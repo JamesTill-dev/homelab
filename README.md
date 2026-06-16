@@ -4,8 +4,7 @@ Personal homelab running on a Synology NAS with Docker-based services
 for media management and network-level ad blocking.
 
 ## Hardware
-- **NAS:** Synology [model] — [X]TB usable storage
-- **Network:** [router/switch if worth mentioning]
+- **NAS:** Synology DS918+ — 40TB usable storage
 - **Other:** Raspberry Pi 3 (Pi-hole)
 
 ## Services
@@ -17,10 +16,16 @@ for media management and network-level ad blocking.
 | Prowlarr | Indexer manager | Synology (Docker) |
 | Pi-hole | Network ad blocking | Raspberry Pi 3 |
 
-## Structure
-- `/media` — Docker Compose and config for the full media stack
+## Data Structure
+- `data/media/` — books, movies, music, tv
+- `data/torrents/` — torrent downloads
+- `data/usenet/` — usenet downloads
+- `docker/` — per-service Docker config folders
+
+## Repo Structure
+- `/media` — Docker Compose and env template for the full stack
 - `/nas` — Synology scripts and scheduled tasks
 - `/pihole` — Pi-hole configuration and blocklists
 
 ## Notes
-Any quirks, lessons learned, or setup decisions worth documenting.
+VPN routing handled via Gluetun container.
