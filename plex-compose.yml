@@ -1,0 +1,31 @@
+services:
+  plex:
+    image: linuxserver/plex:latest
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=####
+      - PGID=#####
+      - TZ=America/New_York
+      - UMASK=022
+      - VERSION=docker
+      - PLEX_CLAIM=<YOUR_PLEX_CLAIM_TOKEN> # Get from plex.tv/claim - expires in 4 mins, only needed on first run
+    volumes:
+      - /volume1/docker/plex:/config
+      - /volume1/data/media:/data/media
+    devices:
+      - /dev/dri:/dev/dri
+    security_opt:
+      - no-new-privileges:true
+    restart: always
+    
+    ports:
+    - 32400:32400  # Plex Web UI
+    - 3005:3005    # Optional - controlling Plex Home Theater
+    - 8324:8324    # Optional - Plex Companion
+    - 32469:32469  # DLNA
+    - 1900:1900/udp  # DLNA Discovery
+    - 32410:32410/udp  # GDM network discovery
+    - 32412:32412/udp
+    - 32413:32413/udp
+    - 32414:32414/udp
